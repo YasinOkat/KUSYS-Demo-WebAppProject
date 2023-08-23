@@ -1,0 +1,9 @@
+.error-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.error-message {
+    color: #dc3545;
+}

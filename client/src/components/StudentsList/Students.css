@@ -1,0 +1,273 @@
+/* StudentList.css */
+
+/* ... (previous styles) */
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.cancel-button-custom1{
+    margin-top: 20px;
+    background-color: #d32f2f;
+}
+
+.empty-space {
+    height: 35px; /* Set the desired height */
+    /* You can add more styles here like margin, padding, etc. */
+}
+
+
+.top-right {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+
+.close-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.close-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Students.css */
+
+/* Reset default styles and apply basic styling */
+body, ul, li, h2, h3, p, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.student-list-container {
+    max-width: 1000px;
+    position: relative;
+    margin-top: 100px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: #785C74;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+
+/* Title */
+.student-list-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.student-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #BEBBBB; /* Add this line to make the text white */
+  }
+
+.course-list {
+    list-style: none;
+    margin-top: 10px;
+    color: #BEBBBB;
+}
+
+.course-list2 {
+    list-style: none;
+    margin-top: 10px;
+    color: #333;
+}
+  
+
+/* Student List */
+.student-list {
+    list-style: none;
+    padding: 0;
+}
+
+.student-list-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #BEBBBB; /* Change this color code to your desired color */
+  }
+  
+.student-info p {
+    margin-bottom: 10px;
+}
+
+.course-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #332D2D;
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.student-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.student-details {
+    flex: 1;
+}
+
+.student-name {
+    font-weight: bold;
+}
+
+.details-button {
+    color: #007bff;
+    border: none;
+    float: right;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.select-courses-button {
+    color: #800080;
+    border: none;
+    float: right;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.update-button {
+    color: #008000;
+    border: none;
+    border-radius: 4px;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.delete-button {
+    color: #dc3545;
+    border-radius: 4px;
+    float: right;
+    cursor: pointer;
+    margin-right: 10px;
+    float: right;
+}
+
+.delete-button:hover {
+    background-color: #E0E0E0;
+}
+
+.details-button:hover {
+    background-color: #E0E0E0;
+}
+
+.update-button:hover {
+    background-color: #E0E0E0;
+}
+
+.select-courses-button:hover {
+    background-color: #E0E0E0;
+}
+
+.create-button:hover {
+    background-color: #E0E0E0;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.create-button {
+    color: #BEBBBB;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+
+.logout-button {
+    background-color: #54414E;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logout-button:hover {
+    background-color: #a790a5;
+  }
+  
+
+.popup-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+
+.course-item {
+    margin-bottom: 5px;
+}
+
