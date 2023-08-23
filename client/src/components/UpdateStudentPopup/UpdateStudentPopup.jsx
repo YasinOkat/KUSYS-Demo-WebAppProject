@@ -3,7 +3,7 @@ import axios from 'axios';
 import { MDBInput, MDBBtn, MDBCheckbox } from 'mdb-react-ui-kit';
 import './UpdateStudentPopup.css';
 
-const UpdateStudentPopup = ({ student, onClose, updateStudentList, username  }) => {
+const UpdateStudentPopup = ({ student, onClose, updateStudentList, setStudents  }) => {
     
     const authToken = localStorage.getItem('authToken'); // Retrieve the authentication token
     
@@ -52,7 +52,7 @@ const UpdateStudentPopup = ({ student, onClose, updateStudentList, username  }) 
             .then(response => {
                 console.log('Student updated successfully');
                 onClose(); // Close the update popup
-                updateStudentList();
+                updateStudentList(authToken, setStudents);
                 // You might want to refresh the student list or show a success message
             })
             .catch(error => {

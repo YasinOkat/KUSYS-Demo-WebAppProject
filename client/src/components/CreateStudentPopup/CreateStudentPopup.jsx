@@ -3,7 +3,7 @@ import axios from 'axios';
 import { MDBInput, MDBBtn, MDBCheckbox } from 'mdb-react-ui-kit';
 import './CreateStudent.css';
 
-const CreateStudentPopup = ({ onClose, updateStudentList }) => {
+const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents }) => {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -35,14 +35,14 @@ const CreateStudentPopup = ({ onClose, updateStudentList }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-
+    
         if (!formData.username || !formData.password || !formData.first_name || !formData.last_name || !formData.birth_date) {
-            setIsFieldsEmpty(true); // Set the state to indicate fields are empty
-            return; // Exit the function if fields are empty
+            setIsFieldsEmpty(true);
+            return;
         }
-
-        setIsFieldsEmpty(false); // Reset the state if fields are not empty
-
+    
+        setIsFieldsEmpty(false);
+    
         axios.post(`http://localhost:5000/create_student`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -50,14 +50,14 @@ const CreateStudentPopup = ({ onClose, updateStudentList }) => {
         })
         .then(response => {
             console.log('Student created successfully');
-            onClose(); // Close the create popup
-            updateStudentList(); 
-            // You might want to refresh the student list or show a success message
+            onClose();
+            updateStudentList(authToken, setStudents); // Call updateStudentList after creating a student
         })
         .catch(error => {
             console.error('Error creating student:', error);
         });
     };
+    
 
     const handleCancel = () => {
         onClose(); // Close the create popup

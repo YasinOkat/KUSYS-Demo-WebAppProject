@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MDBCheckbox, MDBBtn } from 'mdb-react-ui-kit';
 
-const CourseSelectionPopup = ({ student, onClose, updateStudentList, stude }) => {
+const CourseSelectionPopup = ({ student, onClose, updateStudentList, authToken, setStudents }) => {
     const [availableCourses, setAvailableCourses] = useState([]);
     const [selectedCourseIds, setSelectedCourseIds] = useState([]);
 
@@ -42,7 +42,7 @@ const CourseSelectionPopup = ({ student, onClose, updateStudentList, stude }) =>
         .then(response => {
             console.log('Courses selected successfully');
             onClose();
-            updateStudentList();
+            updateStudentList(authToken, setStudents);
         })
         .catch(error => {
             console.error('Error selecting courses:', error);

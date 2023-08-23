@@ -86,6 +86,8 @@ const StudentList = () => {
     const closePopup = () => {
         setSelectedStudent(null);
         setIsPopupOpen(false);
+
+        updateStudentList(authToken, setStudents);
     };
     
 
@@ -176,13 +178,17 @@ const StudentList = () => {
                         student={selectedStudent}
                         onClose={() => setIsUpdatePopupOpen(false)}
                         updateStudentList={updateStudentList}
+                        authToken={authToken} // Pass the authToken as a prop
+                        setStudents={setStudents} 
                         
                     />
                 )}
                 {isCreatePopupOpen && (
                     <CreateStudentPopup
                         onClose={() => setIsCreatePopupOpen(false)}
-                        updateStudentList={updateStudentList} // Pass the callback function
+                        updateStudentList={updateStudentList}
+                        authToken={authToken} // Pass the authToken as a prop
+                        setStudents={setStudents} // Pass the setStudents function as a prop // Pass the callback function
                     />
                 )}
 
@@ -191,6 +197,8 @@ const StudentList = () => {
                         student={selectedStudent}
                         onClose={() => setIsCourseSelectionPopupOpen(false)}
                         updateStudentList={updateStudentList}
+                        authToken={authToken} // Pass the authToken as a prop
+                        setStudents={setStudents} 
                     />
                 )}
 
