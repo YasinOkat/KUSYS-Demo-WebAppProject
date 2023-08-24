@@ -9,6 +9,7 @@ from models.User import User
 create_student_bp = Blueprint('create_student_bp', __name__)
 
 # The route for creating a student
+# The route for creating a student
 @app.route('/create_student', methods=['GET', 'POST'])
 @login_required # Login required decorator for security
 def create_student():
@@ -16,7 +17,12 @@ def create_student():
 
     if current_user.role == 'admin': # Check if the logged in user is admin
         if request.method == 'POST':
-            # Gets the data from frontend, uses the CreateUserForm() method to create a new user
+            # Check if the username already exists in the database
+            existing_user = User.query.filter_by(username=user_form.username.data).first()
+            if existing_user:
+                return jsonify(message='Username already exists'), 400  # HTTP 400 Bad Request
+            
+            # Create a new user
             new_user = User(
                 username=user_form.username.data,
                 password=user_form.password.data,
@@ -25,7 +31,7 @@ def create_student():
             db.session.add(new_user)
             db.session.commit()
 
-            # Creates a new student
+            # Create a new student
             new_student = Student(
                 user_id=new_user.user_id,
                 first_name=user_form.first_name.data,
@@ -38,4 +44,3 @@ def create_student():
             return redirect(url_for('list_students'))
 
     return jsonify(message='Permission denied'), 403  # HTTP 403 Forbidden
-

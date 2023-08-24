@@ -23,9 +23,6 @@ def login():
 
     user = User.query.filter_by(username=username).first()
 
-    print(username)
-    print(password)
-
     # If the entered user exists and the password matches the password in the database:
     if user and user.check_password(password.encode('utf-8')):
         token = generate_token(user.user_id, user.role)  # Generates a token

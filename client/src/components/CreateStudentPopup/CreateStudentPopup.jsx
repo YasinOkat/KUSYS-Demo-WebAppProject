@@ -4,6 +4,8 @@ import { MDBInput, MDBBtn, MDBCheckbox } from 'mdb-react-ui-kit';
 import './CreateStudent.css';
 
 const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents }) => {
+    
+    const [usernameExistsError, setUsernameExistsError] = useState("");
     // Sets the form, all empty by default
     const [formData, setFormData] = useState({
         username: '',
@@ -56,7 +58,11 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
             updateStudentList(authToken, setStudents);
         })
         .catch(error => {
-            console.error('Error creating student:', error);
+            if (error.response && error.response.status === 400) {
+                setUsernameExistsError('Username already exists');
+            } else {
+                console.error('Error creating student:', error);
+            }
         });
     };
     
@@ -123,6 +129,14 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
                             onChange={handleCheckboxChange}
                         />
                     <div className="error-container">
+                        {isFieldsEmpty && (
+                            <p className="error-message">Please fill in all fields</p>
+                        )}
+                    </div>
+                    <div className="error-container">
+                        {usernameExistsError && (
+                            <p className="error-message">{usernameExistsError}</p>
+                        )}
                         {isFieldsEmpty && (
                             <p className="error-message">Please fill in all fields</p>
                         )}

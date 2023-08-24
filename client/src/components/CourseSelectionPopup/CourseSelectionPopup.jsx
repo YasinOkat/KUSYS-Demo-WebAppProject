@@ -6,6 +6,7 @@ const CourseSelectionPopup = ({ student, onClose, updateStudentList, authToken, 
     const [availableCourses, setAvailableCourses] = useState([]);
     const [selectedCourseIds, setSelectedCourseIds] = useState([]);
 
+
     // When the popup opens, send request to the API and fetch the courses
     useEffect(() => {
         axios.get(`http://localhost:5000/courses`)
