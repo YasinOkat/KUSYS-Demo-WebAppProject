@@ -6,6 +6,7 @@ const CourseSelectionPopup = ({ student, onClose, updateStudentList, authToken, 
     const [availableCourses, setAvailableCourses] = useState([]);
     const [selectedCourseIds, setSelectedCourseIds] = useState([]);
 
+    // When the popup opens, send request to the API and fetch the courses
     useEffect(() => {
         axios.get(`http://localhost:5000/courses`)
             .then(response => {
@@ -25,24 +26,24 @@ const CourseSelectionPopup = ({ student, onClose, updateStudentList, authToken, 
         }
     };
 
+    // After selecting courses, send a request to the API and update the courses
     const handleSubmit = event => {
         event.preventDefault();
-        const token = localStorage.getItem('authToken');
-        const userRole = localStorage.getItem('userRole');
-        console.log(selectedCourseIds);
+        const token = localStorage.getItem('authToken'); // Since the endpoint requires login_required, we are sending the token
+        const userRole = localStorage.getItem('userRole'); // Only update if the user is admin
+        
         axios.post(
             `http://localhost:5000/select_courses/${student.student_id}`,
             { selected_courses: selectedCourseIds, userRole },
             {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`, // Sending the JWT token
                 },
             }
         )
         .then(response => {
-            console.log('Courses selected successfully');
             onClose();
-            updateStudentList(authToken, setStudents);
+            updateStudentList(authToken, setStudents); // After closing the popup, automatically update the studends list
         })
         .catch(error => {
             console.error('Error selecting courses:', error);
@@ -59,7 +60,7 @@ const CourseSelectionPopup = ({ student, onClose, updateStudentList, authToken, 
                 <h2>Select Courses for {student.first_name} {student.last_name}</h2>
                 <form onSubmit={handleSubmit}>
                     {availableCourses.map(course => (
-                        <div key={course.course_id}>
+                        <div key={course.course_id_pk}>
                             <label>
                                 <MDBCheckbox
                                     type="checkbox"

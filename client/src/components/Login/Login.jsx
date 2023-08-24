@@ -19,34 +19,33 @@ const Login = () => {
   const history = useHistory();
   const [loginFailed, setLoginFailed] = useState(false);
 
+  // Function to sanitize HTML
   const escapeHtml = (unsafe) => {
     return unsafe.replace(/</g, '&lt;').replace(/>/g, '&gt;');
   };
 
   const handleLogin = async () => {
-
+    // Sanitize the username and password using the function above
     const sanitizedUsername = escapeHtml(username);
     const sanitizedPassword = escapeHtml(password);
 
+    // Send request
     try {
       const response = await axios.post('http://localhost:5000/login', {
         username: sanitizedUsername,
         password: sanitizedPassword,
       });
 
-      
-
+      // If the response is successful, store the token, userId, and userRole sent by the API in the local storage
       if (response.data.success) {
         const token = response.data.token;
         const userId = response.data.user_id;
         const userRole = response.data.user_role;
-        console.log(token);
-        console.log(userId);
-        console.log(userRole);
+
         localStorage.setItem('authToken', token);
         localStorage.setItem('userId', userId);
         localStorage.setItem('userRole', userRole);
-        history.push('/students');
+        history.push('/students'); // Redirect to the students list
       } else {
         setLoginFailed(true);
       }

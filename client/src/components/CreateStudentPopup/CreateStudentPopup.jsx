@@ -4,6 +4,7 @@ import { MDBInput, MDBBtn, MDBCheckbox } from 'mdb-react-ui-kit';
 import './CreateStudent.css';
 
 const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents }) => {
+    // Sets the form, all empty by default
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -31,11 +32,12 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
         }));
     };
 
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('authToken'); // We are getting token stored in the local storage
 
     const handleSubmit = event => {
         event.preventDefault();
     
+        // All fields must be filled
         if (!formData.username || !formData.password || !formData.first_name || !formData.last_name || !formData.birth_date) {
             setIsFieldsEmpty(true);
             return;
@@ -43,13 +45,13 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
     
         setIsFieldsEmpty(false);
     
+        // Send request with the token
         axios.post(`http://localhost:5000/create_student`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
         })
         .then(response => {
-            console.log('Student created successfully');
             onClose();
             updateStudentList(authToken, setStudents);
         })

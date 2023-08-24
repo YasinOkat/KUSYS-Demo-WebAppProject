@@ -7,6 +7,7 @@ const UpdateStudentPopup = ({ student, onClose, updateStudentList, setStudents  
     
     const authToken = localStorage.getItem('authToken');
     
+    // Prefill the form data with the selected student's info
     const [formData, setFormData] = useState({
         first_name: student.first_name,
         last_name: student.last_name,

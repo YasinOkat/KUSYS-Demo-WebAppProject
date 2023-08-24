@@ -28,6 +28,7 @@ const StudentList = () => {
     const history = useHistory();
     const authToken = localStorage.getItem('authToken');
 
+    // As soon as the page loads, set the students, sending the token also to the API
     useEffect(() => {
         
         const userId = localStorage.getItem('userId');
@@ -65,6 +66,7 @@ const StudentList = () => {
         deleteStudent(student, authToken, setStudents, setSelectedStudent, userRole);
     };
 
+    // Function to fetch the student details
     const openPopup = student => {
         setSelectedStudent(student);
 
@@ -76,7 +78,6 @@ const StudentList = () => {
         .then(response => {
             setStudentDetails(response.data);
             setIsPopupOpen(true);
-            console.log('API Response:', response.data);
         })
         .catch(error => {
             console.error('Error fetching student details:', error);
@@ -91,6 +92,7 @@ const StudentList = () => {
     };
     
 
+    // Function to logout, removes the local storage items: authToken, userId, userRole
     const handleLogout = () => {
         axios.get('http://localhost:5000/logout')
             .then(response => {

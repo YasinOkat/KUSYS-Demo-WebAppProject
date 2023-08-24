@@ -1,7 +1,3 @@
-/* StudentList.css */
-
-/* ... (previous styles) */
-
 .popup {
     position: fixed;
     top: 0;
@@ -29,8 +25,7 @@
 }
 
 .empty-space {
-    height: 35px; /* Set the desired height */
-    /* You can add more styles here like margin, padding, etc. */
+    height: 35px;
 }
 
 
@@ -54,10 +49,6 @@
 .close-button:hover {
     background-color: #d32f2f;
 }
-
-/* Students.css */
-
-/* Reset default styles and apply basic styling */
 body, ul, li, h2, h3, p, button {
     margin: 0;
     padding: 0;
@@ -78,7 +69,6 @@ body, ul, li, h2, h3, p, button {
 }
 
 
-/* Title */
 .student-list-title {
     text-align: center;
     margin-bottom: 20px;
@@ -89,7 +79,7 @@ body, ul, li, h2, h3, p, button {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #BEBBBB; /* Add this line to make the text white */
+    color: #BEBBBB;
   }
 
 .course-list {
@@ -105,7 +95,6 @@ body, ul, li, h2, h3, p, button {
 }
   
 
-/* Student List */
 .student-list {
     list-style: none;
     padding: 0;
@@ -115,7 +104,7 @@ body, ul, li, h2, h3, p, button {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #BEBBBB; /* Change this color code to your desired color */
+    color: #BEBBBB;
   }
   
 .student-info p {
@@ -213,7 +202,6 @@ body, ul, li, h2, h3, p, button {
     background-color: #E0E0E0;
 }
 
-/* Popup */
 .popup {
     position: fixed;
     top: 0;
