@@ -1,7 +1,7 @@
 import psycopg2
 import bcrypt
 
-# Replace these values with your actual database connection details
+
 DB_HOST = "localhost"
 DB_NAME = "postgres"
 DB_USER = "postgres"
