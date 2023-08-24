@@ -74,7 +74,8 @@ const CourseSelectionPopup = ({ student, onClose, updateStudentList, authToken, 
                     ))}
                     <div className="button-container">
                         <MDBBtn type="submit" className="button-margin">Save</MDBBtn>
-                        <MDBBtn type="button" onClick={handleCancel} className="cancel-button-custom">Cancel</MDBBtn>                    </div>
+                        <MDBBtn type="button" onClick={handleCancel} className="cancel-button-custom">Cancel</MDBBtn>
+                    </div>
                     
                 </form>
             </div>

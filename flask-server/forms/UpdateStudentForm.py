@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, BooleanField
 
-
+# Define a form named UpdateStudentForm
 class UpdateStudentForm(FlaskForm):
     first_name = StringField('First Name')
     last_name = StringField('Last Name')

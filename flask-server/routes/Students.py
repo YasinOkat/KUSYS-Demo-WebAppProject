@@ -7,7 +7,7 @@ from models.User import User
 
 students_bp = Blueprint('students_bp', __name__)
 
-
+# The route to get students info
 @app.route('/students', methods=['GET'])
 @login_required
 def list_students():
@@ -22,7 +22,7 @@ def list_students():
                 'first_name': student.first_name,
                 'last_name': student.last_name,
                 'role': user.role,
-                'username': user.username,  # Include the username
+                'username': user.username,
                 'birth_date': student.birth_date.strftime('%Y-%m-%d')
             })
 

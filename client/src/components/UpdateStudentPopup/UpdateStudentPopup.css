@@ -1,7 +1,7 @@
 .error-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    margin-top: 10px; /* Adjust the margin as needed */
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .error-message {

@@ -5,7 +5,7 @@ from models.Course import Course
 
 courses_bp = Blueprint('courses_bp', __name__)
 
-
+# The route that returns available courses
 @app.route('/courses', methods=['GET'])
 def get_courses():
     courses = Course.get_all()

@@ -20,7 +20,7 @@ const updateStudentList = (authToken, setStudents) => {
                 return { ...student, details: detailsResponse.data };
             } catch (detailsError) {
                 console.error('Error fetching student details:', detailsError);
-                return { ...student, details: null }; // Handle the error case
+                return { ...student, details: null };
             }
         });
 
@@ -47,10 +47,8 @@ const deleteStudent = (student, authToken, setStudents, setSelectedStudent, user
             }
         })
         .then(response => {
-            // Handle successful deletion (e.g., show a message or update the list)
             console.log('Student deleted successfully');
             updateStudentList(authToken, setStudents);
-            // You might want to refresh the student list or handle it in a different way
         })
         .catch(error => {
             console.error('Error deleting student:', error);

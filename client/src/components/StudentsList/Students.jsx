@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import './Students.css'; // Import the CSS file for styling
+import './Students.css';
 import UpdateStudentPopup from '../UpdateStudentPopup/UpdateStudentPopup';
 import CreateStudentPopup from '../CreateStudentPopup/CreateStudentPopup';
 import CourseSelectionPopup from '../CourseSelectionPopup/CourseSelectionPopup';
@@ -24,7 +24,7 @@ const StudentList = () => {
     const [isCreatePopupOpen, setIsCreatePopupOpen] = useState(false);
     const [isCourseSelectionPopupOpen, setIsCourseSelectionPopupOpen] = useState(false);
     const [userRole, setUserRole] = useState('');
-    const [userId, setUserId] = useState(''); // Add this state variable for the user's ID
+    const [userId, setUserId] = useState('');
     const history = useHistory();
     const authToken = localStorage.getItem('authToken');
 
@@ -94,7 +94,6 @@ const StudentList = () => {
     const handleLogout = () => {
         axios.get('http://localhost:5000/logout')
             .then(response => {
-                // Perform any client-side actions after logout (e.g., clear local storage)
                 localStorage.removeItem('authToken');
                 localStorage.removeItem('userId');
                 localStorage.removeItem('userRole');
@@ -129,7 +128,6 @@ const StudentList = () => {
                         <span className="student-name">
                             {student.first_name} {student.last_name}
                         </span>
-                        {/* Display courses below the student's name */}
                         {(userRole === 'admin' || student.student_id === userId) && student.details ? (
                             <div className="course-list">
                                 Courses: {student.details.courses.map((course, index) => (
@@ -178,7 +176,7 @@ const StudentList = () => {
                         student={selectedStudent}
                         onClose={() => setIsUpdatePopupOpen(false)}
                         updateStudentList={updateStudentList}
-                        authToken={authToken} // Pass the authToken as a prop
+                        authToken={authToken}
                         setStudents={setStudents} 
                         
                     />
@@ -187,8 +185,8 @@ const StudentList = () => {
                     <CreateStudentPopup
                         onClose={() => setIsCreatePopupOpen(false)}
                         updateStudentList={updateStudentList}
-                        authToken={authToken} // Pass the authToken as a prop
-                        setStudents={setStudents} // Pass the setStudents function as a prop // Pass the callback function
+                        authToken={authToken}
+                        setStudents={setStudents}
                     />
                 )}
 
@@ -197,15 +195,9 @@ const StudentList = () => {
                         student={selectedStudent}
                         onClose={() => setIsCourseSelectionPopupOpen(false)}
                         updateStudentList={updateStudentList}
-                        authToken={authToken} // Pass the authToken as a prop
+                        authToken={authToken}
                         setStudents={setStudents} 
                     />
-                )}
-
-                {isPopupOpen && (
-                    <div className="popup">
-                        {/* ... (student details popup content) */}
-                    </div>
                 )}
             </ul>
             {isPopupOpen && (

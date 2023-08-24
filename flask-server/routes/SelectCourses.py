@@ -9,11 +9,11 @@ select_courses_bp = Blueprint('select_courses_bp', __name__)
 
 
 @app.route('/select_courses/<int:student_id>', methods=['POST'])
-@login_required
+@login_required # The login required decorator for security
 def select_courses(student_id):
     student = Student.query.get_or_404(student_id)
 
-    # Ensure that the logged-in user can only select courses for their own profile
+    # The admin can select courses for all students, while the standart user can only select his courses
     if current_user.role == 'admin' or current_user.user_id == student.user_id:
         if request.method == 'POST':
             data = request.json

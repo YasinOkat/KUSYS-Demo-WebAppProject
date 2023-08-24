@@ -13,7 +13,7 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
         isAdmin: false,
     });
 
-    const [isFieldsEmpty, setIsFieldsEmpty] = useState(false); // State to track if fields are empty
+    const [isFieldsEmpty, setIsFieldsEmpty] = useState(false);
 
     const handleInputChange = event => {
         const { name, value } = event.target;
@@ -51,7 +51,7 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
         .then(response => {
             console.log('Student created successfully');
             onClose();
-            updateStudentList(authToken, setStudents); // Call updateStudentList after creating a student
+            updateStudentList(authToken, setStudents);
         })
         .catch(error => {
             console.error('Error creating student:', error);
@@ -60,7 +60,7 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
     
 
     const handleCancel = () => {
-        onClose(); // Close the create popup
+        onClose();
     };
 
     return (
@@ -127,7 +127,8 @@ const CreateStudentPopup = ({ onClose, updateStudentList, authToken, setStudents
                     </div>
                     <div className="button-container">
                         <MDBBtn type="submit" className="button-margin">Create</MDBBtn>
-                        <MDBBtn type="button" onClick={handleCancel} className="cancel-button-custom">Cancel</MDBBtn>                    </div>
+                        <MDBBtn type="button" onClick={handleCancel} className="cancel-button-custom">Cancel</MDBBtn> 
+                    </div>
                 </form>
             </div>
         </div>

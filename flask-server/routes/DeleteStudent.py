@@ -8,21 +8,21 @@ from models.User import User
 
 delete_student_bp = Blueprint('delete_student_bp', __name__)
 
-
+# The route for deleteing a student
 @app.route('/delete_student/<int:student_id>', methods=['POST'])
-@login_required
+@login_required # Login required decorator for security
 def delete_student(student_id):
-    student = Student.query.get_or_404(student_id)
-    if current_user.role == 'admin':
+    student = Student.query.get_or_404(student_id) # Gets the id of the student that is to be deleted
+    if current_user.role == 'admin': # Check if it's admin who sends the request
         try:
             user_id = student.user_id
-
+            # First, deletes any records associated with the student in the student_courses table
             student_courses = CourseStudent.query.filter_by(student_id=student_id).all()
             for student_course in student_courses:
                 db.session.delete(student_course)
-
+            # Deletes the student from the students table
             db.session.delete(student)
-
+            # Deletes the student from the users table
             user = User.query.get(user_id)
             if user:
                 db.session.delete(user)

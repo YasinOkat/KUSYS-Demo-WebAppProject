@@ -5,7 +5,7 @@ import './UpdateStudentPopup.css';
 
 const UpdateStudentPopup = ({ student, onClose, updateStudentList, setStudents  }) => {
     
-    const authToken = localStorage.getItem('authToken'); // Retrieve the authentication token
+    const authToken = localStorage.getItem('authToken');
     
     const [formData, setFormData] = useState({
         first_name: student.first_name,
@@ -16,7 +16,7 @@ const UpdateStudentPopup = ({ student, onClose, updateStudentList, setStudents  
     });
 
 
-    const [isFieldsEmpty, setIsFieldsEmpty] = useState(false); // State to track if fields are empty
+    const [isFieldsEmpty, setIsFieldsEmpty] = useState(false);
 
     const handleInputChange = event => {
         const { name, value } = event.target;
@@ -38,11 +38,11 @@ const UpdateStudentPopup = ({ student, onClose, updateStudentList, setStudents  
         event.preventDefault();
 
         if (!formData.first_name || !formData.last_name || !formData.birth_date || !formData.username) {
-            setIsFieldsEmpty(true); // Set the state to indicate fields are empty
-            return; // Exit the function if fields are empty
+            setIsFieldsEmpty(true);
+            return;
         }
 
-        setIsFieldsEmpty(false); // Reset the state if fields are not empty
+        setIsFieldsEmpty(false);
 
         axios.post(`http://localhost:5000/update_student/${student.student_id}`, formData, {
             headers: {
@@ -51,9 +51,8 @@ const UpdateStudentPopup = ({ student, onClose, updateStudentList, setStudents  
         })
             .then(response => {
                 console.log('Student updated successfully');
-                onClose(); // Close the update popup
+                onClose();
                 updateStudentList(authToken, setStudents);
-                // You might want to refresh the student list or show a success message
             })
             .catch(error => {
                 console.error('Error updating student:', error);
@@ -62,7 +61,7 @@ const UpdateStudentPopup = ({ student, onClose, updateStudentList, setStudents  
     
 
     const handleCancel = () => {
-        onClose(); // Close the update popup
+        onClose();
     };
 
     return (

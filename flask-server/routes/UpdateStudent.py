@@ -8,14 +8,14 @@ from models.User import User
 
 update_student_bp = Blueprint('update_student_bp', __name__)
 
-
+# The route to update a student
 @app.route('/update_student/<int:student_id>', methods=['GET', 'POST'])
 @login_required
 def update_student(student_id):
     student = Student.query.get_or_404(student_id)
     form = UpdateStudentForm()
 
-    if current_user.role == 'admin':
+    if current_user.role == 'admin': # Only admin can update
         if request.method == 'POST':
             student.first_name = form.first_name.data
             student.last_name = form.last_name.data
@@ -25,7 +25,7 @@ def update_student(student_id):
             # Update corresponding User record
             user = User.query.get(student.user_id)
             if user:
-                user.username = form.username.data  # Update username if needed
+                user.username = form.username.data
                 user.role = 'admin' if request.json.get('isAdmin') else 'user'
                 db.session.commit()
 

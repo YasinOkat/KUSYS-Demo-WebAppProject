@@ -8,22 +8,24 @@ from models.User import User
 
 create_student_bp = Blueprint('create_student_bp', __name__)
 
-
+# The route for creating a student
 @app.route('/create_student', methods=['GET', 'POST'])
-@login_required
+@login_required # Login required decorator for security
 def create_student():
     user_form = CreateUserForm()
 
-    if current_user.role == 'admin':
+    if current_user.role == 'admin': # Check if the logged in user is admin
         if request.method == 'POST':
+            # Gets the data from frontend, uses the CreateUserForm() method to create a new user
             new_user = User(
                 username=user_form.username.data,
                 password=user_form.password.data,
-                role='admin' if request.json.get('isAdmin') else 'user'  # Set role based on isAdmin value
+                role='admin' if request.json.get('isAdmin') else 'user' 
             )
             db.session.add(new_user)
             db.session.commit()
 
+            # Creates a new student
             new_student = Student(
                 user_id=new_user.user_id,
                 first_name=user_form.first_name.data,

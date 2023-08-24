@@ -1,5 +1,3 @@
-/* CreateStudent.css */
-
 .popup {
     position: fixed;
     top: 0;
@@ -14,8 +12,8 @@
 
 .error-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    margin-top: 10px; /* Adjust the margin as needed */
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .error-message {
@@ -46,7 +44,7 @@ h2 {
 }
 
 .cancel-button-custom:hover {
-    background-color: #c82333; /* Hover background color */
+    background-color: #c82333;
 }
 
 
@@ -101,5 +99,3 @@ form {
     background-color: #ccc;
     color: #222;
 }
-
-/* Add more styles as needed */

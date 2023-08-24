@@ -4,7 +4,7 @@ from main import app
 
 logout_bp = Blueprint('logout_bp', __name__)
 
-
+# The logout route
 @app.route('/logout')
 def logout_page():
     logout_user()
