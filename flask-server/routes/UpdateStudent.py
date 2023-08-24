@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, Blueprint
+from flask import request, Blueprint, jsonify
 from flask_login import login_required, current_user
 
 from forms.UpdateStudentForm import UpdateStudentForm
@@ -12,10 +12,12 @@ update_student_bp = Blueprint('update_student_bp', __name__)
 @app.route('/update_student/<int:student_id>', methods=['GET', 'POST'])
 @login_required
 def update_student(student_id):
+    response = {'success': False, 'message': 'Unauthorized'}
+
     student = Student.query.get_or_404(student_id)
     form = UpdateStudentForm()
 
-    if current_user.role == 'admin': # Only admin can update
+    if current_user.role == 'admin':  # Only admin can update
         if request.method == 'POST':
             student.first_name = form.first_name.data
             student.last_name = form.last_name.data
@@ -29,9 +31,11 @@ def update_student(student_id):
                 user.role = 'admin' if request.json.get('isAdmin') else 'user'
                 db.session.commit()
 
-            flash('Student updated successfully!')
-            return redirect(url_for('list_students'))
+            response['success'] = True
+            response['message'] = 'Student updated successfully'
+        else:
+            response['message'] = 'Provide the required data via POST request'
+    else:
+        response['message'] = 'Unauthorized'
 
-        return render_template('update.html', form=form, student=student)
-
-    return "Unauthorized"
+    return jsonify(response)

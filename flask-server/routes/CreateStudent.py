@@ -41,6 +41,5 @@ def create_student():
             db.session.add(new_student)
             db.session.commit()
 
-            return redirect(url_for('list_students'))
 
     return jsonify(message='Permission denied'), 403  # HTTP 403 Forbidden

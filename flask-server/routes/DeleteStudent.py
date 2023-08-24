@@ -1,5 +1,6 @@
-from flask import render_template, redirect, url_for, flash, Blueprint
+from flask import render_template, redirect, url_for, flash, Blueprint, jsonify
 from flask_login import login_required, current_user
+from sqlalchemy.exc import SQLAlchemyError
 
 from main import app, db
 from models.CourseStudent import CourseStudent
@@ -13,6 +14,11 @@ delete_student_bp = Blueprint('delete_student_bp', __name__)
 @login_required # Login required decorator for security
 def delete_student(student_id):
     student = Student.query.get_or_404(student_id) # Gets the id of the student that is to be deleted
+    response = {'success': False, 'message': 'An error occurred while deleting the student.'}
+    if current_user.role != 'admin':
+        response['message'] = "You don't have permission to delete this student."
+        return jsonify(response)
+
     if current_user.role == 'admin': # Check if it's admin who sends the request
         try:
             user_id = student.user_id
@@ -27,6 +33,6 @@ def delete_student(student_id):
             if user:
                 db.session.delete(user)
             db.session.commit()
-            return redirect(url_for("list_students"))
-        except:
-            return render_template("student_list.html")
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            return jsonify(response)
