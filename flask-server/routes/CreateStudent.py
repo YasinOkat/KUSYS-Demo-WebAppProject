@@ -14,6 +14,7 @@ create_student_bp = Blueprint('create_student_bp', __name__)
 @login_required # Login required decorator for security
 def create_student():
     user_form = CreateUserForm()
+    response = {'success': False, 'message': 'Permission denied'}
 
     if current_user.role == 'admin': # Check if the logged in user is admin
         if request.method == 'POST':
@@ -40,6 +41,9 @@ def create_student():
             )
             db.session.add(new_student)
             db.session.commit()
+            response['success'] = True
+            response['message'] = 'Student created successfully'
+            return response
 
 
     return jsonify(message='Permission denied'), 403  # HTTP 403 Forbidden

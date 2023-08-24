@@ -61,14 +61,14 @@ const CourseSelectionPopup = ({ student, onClose, updateStudentList, authToken, 
                 <h2>Select Courses for {student.first_name} {student.last_name}</h2>
                 <form onSubmit={handleSubmit}>
                     {availableCourses.map(course => (
-                        <div key={course.course_id_pk}>
+                        <div key={course.course_id}>
                             <label>
                                 <MDBCheckbox
                                     type="checkbox"
                                     label={course.course_name}
                                     name="selected_courses[]"
-                                    value={course.course_id_pk}
-                                    checked={selectedCourseIds.includes(course.course_id_pk)}
+                                    value={course.course_id}
+                                    checked={selectedCourseIds.includes(course.course_id)}
                                     onChange={handleCourseChange}
                                 />
                             </label>

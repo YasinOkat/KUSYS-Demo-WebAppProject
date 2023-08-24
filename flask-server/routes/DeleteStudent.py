@@ -32,7 +32,14 @@ def delete_student(student_id):
             user = User.query.get(user_id)
             if user:
                 db.session.delete(user)
+
             db.session.commit()
+            response['success'] = True
+            response['message'] = 'Student deleted successfully.'
+
+            return jsonify(response)
         except SQLAlchemyError as e:
             db.session.rollback()
             return jsonify(response)
+        
+    return jsonify(response)

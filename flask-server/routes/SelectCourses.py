@@ -18,7 +18,7 @@ def select_courses(student_id):
         if request.method == 'POST':
             data = request.json
             selected_course_ids = data.get('selected_courses', [])
-            selected_courses = Course.query.filter(Course.course_id_pk.in_(selected_course_ids)).all()
+            selected_courses = Course.query.filter(Course.course_id.in_(selected_course_ids)).all()
 
             student.courses = selected_courses
             db.session.commit()
